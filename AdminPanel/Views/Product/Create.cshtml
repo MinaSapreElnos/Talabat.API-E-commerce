@@ -1,0 +1,94 @@
+﻿@using Talabat.Core;
+@using Talabat.Core.Models;
+@model ProductViewModel;
+
+@inject IUnitOfWork unitOfWork
+@{
+    var Types = new SelectList(unitOfWork.Repository<Talabat.Core.Models.ProductCategory>().GetAllAsync().Result, "Id", "Name");
+    var Brands = new SelectList(unitOfWork.Repository<Talabat.Core.Models.ProductBrand>().GetAllAsync().Result, "Id", "Name");
+
+}
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create New Product</h1>
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+	<input asp-for="PictureUrl" hidden />
+
+
+	<partial name="CreateEditPartialview" model="Model"/> 
+	@*<div class="form-group">
+		<input asp-for="PictureUrl" hidden />
+		<label asp-for="Image" class="col-form-label "></label>
+		<input asp-for="Image" class="form-control" />
+	</div>*@
+
+
+	@*<div class="form-group">
+		<label asp-for="Id" class="col-form-label"></label>
+		<input asp-for="Id" class="form-control" />
+		<span asp-validation-for="Id" class="text-danger"></span>
+	</div>*@
+
+@*	<div class="form-group">
+		<label asp-for="Name" class="col-form-label"></label>
+		<input asp-for="Name" class="form-control" />
+		<span asp-validation-for="Name" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Description" class="col-form-label"></label>
+		<input asp-for="Description" class="form-control" />
+		<span asp-validation-for="Description" class="text-danger"></span>
+	</div>
+*@
+	@*<div class="form-group">
+		<label asp-for="PictureUrl" class="col-form-label"></label>
+		<input asp-for="PictureUrl" class="form-control" />
+		<span asp-validation-for="PictureUrl" class="text-danger"></span>
+	</div>*@
+
+@*	<div class="form-group">
+		<label asp-for="Price" class="col-form-label"></label>
+		<input asp-for="Price" class="form-control" type="number" />
+		<span asp-validation-for="Price" class="text-danger"></span> 
+	</div>
+*@
+	
+
+@*	<div class="form-group">
+		<label asp-for="BrandId" class="col-form-label"></label>
+		<select class="form-control" asp-for="BrandId" asp-items="Brands">
+	<option value="">-- Select Brand --</option>
+	</select>
+	</div>
+*@
+	@*<div class="form-group">
+		<label asp-for="BrandId" class="col-form-label"></label>
+		<input asp-for="BrandId" class="form-control" type="number" />
+		<span asp-validation-for="BrandId" class="text-danger"></span>
+	</div>*@
+
+
+
+@*	<div class="form-group">
+		<label asp-for="CategoryId" class="col-form-label"></label>
+		<select class="form-control" asp-for="CategoryId" asp-items="Types">
+	<option value="">-- Select Type --</option>
+	</select>
+	</div>*@
+	 
+@*	<div class="form-group">
+		<label asp-for="CategoryId" class="col-form-label"></label>
+		<input asp-for="CategoryId" class="form-control" type="number" />
+		<span asp-validation-for="CategoryId" class="text-danger"></span>
+	</div>*@
+
+
+	<br />
+	<br />
+
+	<input type="submit" value="Add" class="btn btn-primary" />
+	<a asp-action="Index" class="btn btn-light"> Back To List</a>
+</form>
